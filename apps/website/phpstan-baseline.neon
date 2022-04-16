@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to property \\$id on an unknown class App\\\\Models\\\\User\\.$#"
+			count: 1
+			path: src/Shared/Infrastructure/Providers/RouteServiceProvider.php
+
