@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Login;
 
-use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\Services\CredentialsAuthenticator;
 use App\Security\Domain\UseCases\Login\Login;
 use App\Security\Domain\UseCases\Login\LoginRequest;
@@ -24,7 +23,7 @@ class LoginSUT
     public function build(): LoginSUT
     {
         $this->presenter = new LoginTestPresenter();
-        $this->request ??= new LoginRequest("John Doe", "password");
+        $this->request ??= new LoginRequest('John Doe', 'password');
         $this->authenticator ??= new ValidCredentialsAuthenticator();
 
         $this->useCase = new Login($this->authenticator);

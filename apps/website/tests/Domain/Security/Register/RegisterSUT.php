@@ -25,9 +25,9 @@ class RegisterSUT
     public function build(): RegisterSUT
     {
         $this->request = new RegisterRequest(
-            "John Doe",
-            "john-doe@email",
-            "password"
+            'John Doe',
+            'john-doe@email',
+            'password'
         );
         $this->presenter = new RegisterTestPresenter();
         $this->userRepository ??= new InMemoryUserRepository();
@@ -47,9 +47,9 @@ class RegisterSUT
     public function emailAlreadyInUse(): self
     {
         $request = $this->getRequest();
-        $this->request = new RegisterRequest($request->pseudonym, "john-doe@email", $request->password);
+        $this->request = new RegisterRequest($request->pseudonym, 'john-doe@email', $request->password);
 
-        $user = new User(new Email("john-doe@email"));
+        $user = new User(new Email('john-doe@email'));
         $this->userRepository = new InMemoryUserRepository([$user]);
 
         return $this;
@@ -57,6 +57,6 @@ class RegisterSUT
 
     private function getRequest(): RegisterRequest
     {
-        return $this->request ?? new RegisterRequest("John Doe", "john-doe@email", "password");
+        return $this->request ?? new RegisterRequest('John Doe', 'john-doe@email', 'password');
     }
 }

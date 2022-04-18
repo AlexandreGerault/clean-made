@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\Domain\Security\Register;
 
 use App\Security\Domain\Entities\User;
@@ -19,4 +18,4 @@ it('registers a user successfully', function () {
 
 it('cannot register a user if the email address is already in use', function () {
     RegisterSUT::new()->emailAlreadyInUse()->build()->run();
-})->throws(Exception::class, "This email address is already in use");
+})->throws(Exception::class, 'This email address is already in use');

@@ -42,4 +42,3 @@ uses(UnitTestCase::class)->in('Domain');
 | test files.
 |
 */
-

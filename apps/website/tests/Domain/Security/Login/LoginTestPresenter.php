@@ -28,6 +28,6 @@ class LoginTestPresenter implements LoginPresenter
      */
     public function invalidCredentialsProvided(): void
     {
-        throw new Exception("Invalid credentials provided");
+        throw new Exception('Invalid credentials provided');
     }
 }

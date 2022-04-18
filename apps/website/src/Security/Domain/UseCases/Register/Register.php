@@ -18,6 +18,7 @@ class Register
     {
         if ($this->userRepository->exists(new Email($request->email))) {
             $presenter->emailAlreadyInUse();
+
             return;
         }
 

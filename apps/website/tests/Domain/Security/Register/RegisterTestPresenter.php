@@ -23,6 +23,6 @@ class RegisterTestPresenter implements RegisterPresenter
 
     public function emailAlreadyInUse(): void
     {
-        throw new \Exception("This email address is already in use");
+        throw new \Exception('This email address is already in use');
     }
 }
