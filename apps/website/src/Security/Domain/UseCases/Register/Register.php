@@ -23,7 +23,7 @@ class Register
         }
 
         $user = new User(new Email($request->email));
-        $this->userRepository->save($user);
+        $this->userRepository->save($user->snapshot());
         $presenter->userRegistered(new RegisterResponse($user));
     }
 }

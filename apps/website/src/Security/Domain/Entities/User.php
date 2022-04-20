@@ -8,7 +8,12 @@ use App\Security\Domain\ValueObjects\Email;
 
 class User
 {
-    public function __construct(public readonly Email $email)
+    public function __construct(private Email $email)
     {
+    }
+
+    public function snapshot(): UserSnapshot
+    {
+        return new UserSnapshot($this->email);
     }
 }

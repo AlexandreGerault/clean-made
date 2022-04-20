@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Register;
 
-use App\Security\Domain\Entities\User;
+use App\Security\Domain\Entities\UserSnapshot;
 use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\ValueObjects\Email;
 
 class InMemoryUserRepository implements UserRepository
 {
     /**
-     * @param array<User> $users
+     * @param  array<UserSnapshot>  $users
      */
     public function __construct(private array $users = [])
     {
@@ -28,7 +28,7 @@ class InMemoryUserRepository implements UserRepository
         return false;
     }
 
-    public function save(User $user): void
+    public function save(UserSnapshot $user): void
     {
         $this->users[] = $user;
     }

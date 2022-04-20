@@ -13,7 +13,7 @@ it('registers a user successfully', function () {
     $user = $sut->presenter->response()->user();
 
     expect($user)->toBeInstanceOf(User::class);
-    expect($sut->userRepository->exists($user->email))->toBeTrue();
+    expect($sut->userRepository->exists($user->snapshot()->email))->toBeTrue();
 });
 
 it('cannot register a user if the email address is already in use', function () {
