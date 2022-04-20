@@ -7,6 +7,7 @@ namespace App\Security\Domain\UseCases\Register;
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\ValueObjects\Email;
+use App\Security\Domain\ValueObjects\Password;
 
 class Register
 {
@@ -22,7 +23,7 @@ class Register
             return;
         }
 
-        $user = new User(new Email($request->email));
+        $user = new User(new Email($request->email), new Password($request->password));
         $this->userRepository->save($user->snapshot());
         $presenter->userRegistered(new RegisterResponse($user));
     }
