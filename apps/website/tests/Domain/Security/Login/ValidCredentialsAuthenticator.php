@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Login;
 
+use App\Security\Domain\Entities\User;
 use App\Security\Domain\Services\CredentialsAuthenticator;
+use App\Security\Domain\ValueObjects\Email;
 
 class ValidCredentialsAuthenticator implements CredentialsAuthenticator
 {
-    public function authenticate(string $username, string $password): bool
+    public function authenticate(string $username, string $password): User|false
     {
-        return true;
+        return new User(new Email('john-doe@email'));
     }
 }

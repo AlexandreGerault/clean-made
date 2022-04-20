@@ -16,10 +16,12 @@ class Login
 
     public function executes(LoginPresenter $presenter, LoginRequest $request): void
     {
-        if (!$this->authenticator->authenticate($request->username, $request->password)) {
+        $user = $this->authenticator->authenticate($request->username, $request->password);
+
+        if (!$user) {
             $presenter->invalidCredentialsProvided();
         }
 
-        $presenter->successfullyAuthenticatedUser(new User(new Email('john-doe@email')));
+        $presenter->successfullyAuthenticatedUser($user);
     }
 }
