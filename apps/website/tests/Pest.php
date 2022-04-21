@@ -13,11 +13,13 @@ declare(strict_types=1);
 |
 */
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 use PHPUnit\Framework\TestCase as UnitTestCase;
 use Tests\CreatesApplication;
 
-uses(TestCase::class, CreatesApplication::class)->in('Feature');
+
+uses(TestCase::class, CreatesApplication::class, RefreshDatabase::class)->in('Infrastructure');
 uses(UnitTestCase::class)->in('Domain');
 
 /*
