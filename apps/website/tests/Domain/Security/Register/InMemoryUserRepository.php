@@ -11,7 +11,7 @@ use App\Security\Domain\ValueObjects\Email;
 class InMemoryUserRepository implements UserRepository
 {
     /**
-     * @param  array<UserSnapshot>  $users
+     * @param array<UserSnapshot> $users
      */
     public function __construct(private array $users = [])
     {

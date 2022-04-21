@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security\Domain\UseCases\Login;
 
-use App\Security\Domain\Entities\User;
 use App\Security\Domain\Services\CredentialsAuthenticator;
-use App\Security\Domain\ValueObjects\Email;
 
 class Login
 {

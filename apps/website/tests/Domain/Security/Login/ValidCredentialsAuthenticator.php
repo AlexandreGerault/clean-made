@@ -13,6 +13,6 @@ class ValidCredentialsAuthenticator implements CredentialsAuthenticator
 {
     public function authenticate(string $username, string $password): User|false
     {
-        return new User(new Email('john-doe@email'), new Password("password"));
+        return new User(new Email('john-doe@email'), new Password('password'));
     }
 }
