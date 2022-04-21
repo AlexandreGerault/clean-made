@@ -13,6 +13,11 @@ class User
     {
     }
 
+    public static function create(string $email, string $password): User
+    {
+        return new self(new Email($email), new Password($password));
+    }
+
     public function snapshot(): UserSnapshot
     {
         return new UserSnapshot($this->email, $this->password);
