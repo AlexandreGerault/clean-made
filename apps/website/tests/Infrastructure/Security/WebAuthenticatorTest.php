@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Security\Domain\Entities\User;
 use App\Security\Infrastructure\WebCredentialsAuthenticator;
 use Database\Factories\UserFactory;

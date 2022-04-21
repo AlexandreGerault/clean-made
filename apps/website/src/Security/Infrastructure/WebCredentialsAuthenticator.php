@@ -14,6 +14,6 @@ class WebCredentialsAuthenticator implements CredentialsAuthenticator
     {
         return Auth::attempt(['email' => $username, 'password' => $password])
             ? User::create($username, $password)
-            : false ;
+            : false;
     }
 }

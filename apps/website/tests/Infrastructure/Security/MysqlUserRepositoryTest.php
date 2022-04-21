@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\Password;
 use App\Security\Infrastructure\MysqlUserRepository;
 use Illuminate\Support\Facades\DB;
-
 use function Pest\Laravel\assertDatabaseHas;
 
 it('returns false when email is not present', function () {
@@ -20,7 +21,7 @@ it('returns true when an email is present', function () {
     $repository = new MysqlUserRepository();
 
     expect($repository->exists(new Email('present@email')))->toBeTrue();
-})->group('check it can check if a user exists');;
+})->group('check it can check if a user exists');
 
 it('saves a user to the database', function () {
     $repository = new MysqlUserRepository();
