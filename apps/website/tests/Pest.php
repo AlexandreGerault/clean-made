@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase as UnitTestCase;
 use Tests\CreatesApplication;
 
 uses(TestCase::class, CreatesApplication::class, RefreshDatabase::class)->in('Infrastructure');
-uses(TestCase::class, CreatesApplication::class)->in('UserInterface');
+uses(TestCase::class, CreatesApplication::class, RefreshDatabase::class)->in('UserInterface');
 uses(UnitTestCase::class)->in('Domain');
 
 /*
