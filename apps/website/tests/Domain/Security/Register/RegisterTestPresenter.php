@@ -6,6 +6,7 @@ namespace Tests\Domain\Security\Register;
 
 use App\Security\Domain\UseCases\Register\RegisterPresenter;
 use App\Security\Domain\UseCases\Register\RegisterResponse;
+use App\Shared\UserInterface\ViewModel;
 
 class RegisterTestPresenter implements RegisterPresenter
 {
@@ -24,5 +25,10 @@ class RegisterTestPresenter implements RegisterPresenter
     public function emailAlreadyInUse(): void
     {
         throw new \Exception('This email address is already in use');
+    }
+
+    public function viewModel(): ViewModel
+    {
+        return new class implements ViewModel{};
     }
 }
