@@ -177,6 +177,7 @@ return [
         App\Shared\Infrastructure\Providers\EventServiceProvider::class,
         App\Shared\Infrastructure\Providers\RouteServiceProvider::class,
         App\Security\Infrastructure\SecurityRouteServiceProvider::class,
+        App\Security\Infrastructure\SecurityServiceProvider::class,
     ],
 
     /*
