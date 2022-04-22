@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Security\UserInterface;
+namespace App\Security\UserInterface\Login;
 
 use App\Security\Domain\UseCases\Login\Login;
 use App\Security\Domain\UseCases\Login\LoginRequest;
-use App\Security\UserInterface\LoginRequest as HttpLoginRequest;
+use App\Security\UserInterface\Login\LoginRequest as HttpLoginRequest;
 use App\Shared\UserInterface\Http\Controllers\Controller;
 use App\Shared\UserInterface\Http\HttpResponseViewModel;
 use Symfony\Component\HttpFoundation\Response;

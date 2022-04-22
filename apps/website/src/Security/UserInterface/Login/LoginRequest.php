@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Security\UserInterface;
+namespace App\Security\UserInterface\Login;
 
 use Illuminate\Foundation\Http\FormRequest;
 

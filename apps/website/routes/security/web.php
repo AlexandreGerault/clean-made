@@ -1,6 +1,6 @@
 <?php
 
-use App\Security\UserInterface\LoginController;
+use App\Security\UserInterface\Login\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('connexion', 'security.login')->name('login.show');

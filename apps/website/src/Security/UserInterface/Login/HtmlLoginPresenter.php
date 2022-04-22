@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Security\UserInterface;
+namespace App\Security\UserInterface\Login;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Login\LoginPresenter;

@@ -1,4 +1,4 @@
-<form action="{{ route('security.authenticate') }}" method="post">
+<form action="{{ route('security.login.post') }}" method="post">
     @csrf
     <label>
         Adresse mail
