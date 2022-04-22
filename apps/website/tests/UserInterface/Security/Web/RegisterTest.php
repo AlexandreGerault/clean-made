@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
 it('shows the register page', function () {
-    get(route('security.register.show'))->assertSuccessful()->assertSee("inscrire");
+    get(route('security.register.show'))->assertSuccessful()->assertSee('inscrire');
 });
 
 it('registers a user', function () {
@@ -13,7 +15,7 @@ it('registers a user', function () {
         [
             'email' => 'user@email',
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
         ]
     )
         ->assertSessionHasNoErrors()

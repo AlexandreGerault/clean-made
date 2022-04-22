@@ -18,6 +18,7 @@ class Login
 
         if (!$user) {
             $presenter->invalidCredentialsProvided();
+
             return;
         }
 

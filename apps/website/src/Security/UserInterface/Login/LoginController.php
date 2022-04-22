@@ -23,7 +23,7 @@ class LoginController extends Controller
         $this->login->executes($presenter, new LoginRequest($request->get('email'), $request->get('password')));
 
         if (!$presenter->viewModel() instanceof HttpResponseViewModel) {
-            throw new \RuntimeException("This code should not be executed");
+            throw new \RuntimeException('This code should not be executed');
         }
 
         return $presenter->viewModel()->response();

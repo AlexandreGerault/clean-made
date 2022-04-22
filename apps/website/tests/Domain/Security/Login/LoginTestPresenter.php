@@ -34,6 +34,6 @@ class LoginTestPresenter implements LoginPresenter
 
     public function viewModel(): ViewModel
     {
-        return new class implements ViewModel {};
+        return new class() implements ViewModel {};
     }
 }
