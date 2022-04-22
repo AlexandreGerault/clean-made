@@ -13,6 +13,5 @@
         <input type="password" name="password"/>
     </label>
 
-    @dump($errors)
     <button type="submit">Me connecter</button>
 </form>
