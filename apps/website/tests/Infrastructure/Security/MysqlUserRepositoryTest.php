@@ -27,7 +27,7 @@ it('saves a user to the database', function () {
     $repository = new MysqlUserRepository();
     $user = new User(new Email('user@email'), new Password('password'));
 
-    $repository->save($user->snapshot());
+    $repository->save($user);
 
     assertDatabaseHas('users', ['email' => 'user@email']);
 });

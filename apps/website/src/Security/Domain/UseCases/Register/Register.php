@@ -24,7 +24,7 @@ class Register
         }
 
         $user = new User(new Email($request->email), new Password($request->password));
-        $this->userRepository->save($user->snapshot());
+        $this->userRepository->save($user);
         $presenter->userRegistered(new RegisterResponse($user));
     }
 }

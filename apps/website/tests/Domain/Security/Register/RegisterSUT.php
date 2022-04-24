@@ -51,7 +51,7 @@ class RegisterSUT
         $this->request = new RegisterRequest($request->pseudonym, 'john-doe@email', $request->password);
 
         $user = new User(new Email('john-doe@email'), new Password('password'));
-        $this->userRepository = new InMemoryUserRepository([$user->snapshot()]);
+        $this->userRepository = new InMemoryUserRepository([$user]);
 
         return $this;
     }

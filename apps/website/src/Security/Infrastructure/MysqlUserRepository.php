@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Security\Infrastructure;
 
-use App\Security\Domain\Entities\UserSnapshot;
+use App\Security\Domain\Entities\User;
 use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\ValueObjects\Email;
-use App\Shared\Infrastructure\Models\User;
+use App\Shared\Infrastructure\Models\User as EloquentUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,8 +18,9 @@ class MysqlUserRepository implements UserRepository
         return DB::table('users')->where('email', '=', $email->value)->exists();
     }
 
-    public function save(UserSnapshot $user): void
+    public function save(User $user): void
     {
-        User::query()->create(['email' => $user->email->value, 'password' => Hash::make($user->password->value)]);
+        $user = $user->snapshot();
+        EloquentUser::query()->create(['email' => $user->email->value, 'password' => Hash::make($user->password->value)]);
     }
 }
