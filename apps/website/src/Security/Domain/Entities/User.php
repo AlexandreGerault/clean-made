@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace App\Security\Domain\Entities;
 
 use App\Security\Domain\ValueObjects\Email;
+use App\Security\Domain\ValueObjects\HashedPassword;
 use App\Security\Domain\ValueObjects\Password;
 
 class User
 {
-    public function __construct(private Email $email, private Password $password)
+    public function __construct(private readonly Email $email, private readonly HashedPassword $password)
     {
     }
 
     public static function create(string $email, string $password): User
     {
-        return new self(new Email($email), new Password($password));
+        return new self(new Email($email), new HashedPassword($password));
     }
 
     public function snapshot(): UserSnapshot

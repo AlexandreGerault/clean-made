@@ -9,6 +9,7 @@ use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\UseCases\Register\Register;
 use App\Security\Domain\UseCases\Register\RegisterRequest;
 use App\Security\Domain\ValueObjects\Email;
+use App\Security\Domain\ValueObjects\HashedPassword;
 use App\Security\Domain\ValueObjects\Password;
 
 class RegisterSUT
@@ -16,24 +17,26 @@ class RegisterSUT
     public RegisterRequest $request;
     public RegisterTestPresenter $presenter;
     public Register $useCase;
-    public UserRepository $userRepository;
+    public InMemoryUserRepository $userRepository;
 
     public static function new(): RegisterSUT
     {
-        return new self();
-    }
+        $sut = new self();
 
-    public function build(): RegisterSUT
-    {
-        $this->request = new RegisterRequest(
+        $sut->request = new RegisterRequest(
             'John Doe',
             'john-doe@email',
             'password'
         );
-        $this->presenter = new RegisterTestPresenter();
-        $this->userRepository ??= new InMemoryUserRepository();
+        $sut->presenter = new RegisterTestPresenter();
+        $sut->userRepository ??= new InMemoryUserRepository();
 
-        $this->useCase = new Register($this->userRepository);
+        return $sut;
+    }
+
+    public function build(): RegisterSUT
+    {
+        $this->useCase = new Register($this->userRepository, new DummyPasswordHasher());
 
         return $this;
     }
@@ -47,17 +50,8 @@ class RegisterSUT
 
     public function emailAlreadyInUse(): self
     {
-        $request = $this->getRequest();
-        $this->request = new RegisterRequest($request->pseudonym, 'john-doe@email', $request->password);
-
-        $user = new User(new Email('john-doe@email'), new Password('password'));
-        $this->userRepository = new InMemoryUserRepository([$user]);
+        $this->userRepository->forceUserExists();
 
         return $this;
-    }
-
-    private function getRequest(): RegisterRequest
-    {
-        return $this->request ?? new RegisterRequest('John Doe', 'john-doe@email', 'password');
     }
 }

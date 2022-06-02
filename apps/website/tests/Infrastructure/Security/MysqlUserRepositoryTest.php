@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\ValueObjects\Email;
+use App\Security\Domain\ValueObjects\HashedPassword;
 use App\Security\Domain\ValueObjects\Password;
 use App\Security\Infrastructure\MysqlUserRepository;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ it('returns true when an email is present', function () {
 
 it('saves a user to the database', function () {
     $repository = new MysqlUserRepository();
-    $user = new User(new Email('user@email'), new Password('password'));
+    $user = new User(new Email('user@email'), new HashedPassword('password'));
 
     $repository->save($user);
 
