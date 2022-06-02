@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Register;
 
-use App\Security\Domain\Entities\User;
-use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\UseCases\Register\Register;
 use App\Security\Domain\UseCases\Register\RegisterRequest;
-use App\Security\Domain\ValueObjects\Email;
-use App\Security\Domain\ValueObjects\HashedPassword;
-use App\Security\Domain\ValueObjects\Password;
 
 class RegisterSUT
 {

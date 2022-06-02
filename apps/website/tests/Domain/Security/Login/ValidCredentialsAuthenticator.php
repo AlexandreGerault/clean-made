@@ -8,7 +8,6 @@ use App\Security\Domain\Entities\User;
 use App\Security\Domain\Services\CredentialsAuthenticator;
 use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\HashedPassword;
-use App\Security\Domain\ValueObjects\Password;
 
 class ValidCredentialsAuthenticator implements CredentialsAuthenticator
 {

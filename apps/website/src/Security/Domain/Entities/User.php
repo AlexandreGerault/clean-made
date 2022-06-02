@@ -6,7 +6,6 @@ namespace App\Security\Domain\Entities;
 
 use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\HashedPassword;
-use App\Security\Domain\ValueObjects\Password;
 
 class User
 {

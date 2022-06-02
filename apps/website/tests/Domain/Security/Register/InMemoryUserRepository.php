@@ -37,8 +37,8 @@ class InMemoryUserRepository implements UserRepository
 
     public function contains(User $user): bool
     {
-        return current(array_filter($this->users, function (UserSnapshot $userSnapshot) use ($user) {
+        return false !== current(array_filter($this->users, function (UserSnapshot $userSnapshot) use ($user) {
             return $userSnapshot->email->equals($user->snapshot()->email);
-        })) !== false;
+        }));
     }
 }

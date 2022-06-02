@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\HashedPassword;
-use App\Security\Domain\ValueObjects\Password;
 use App\Security\Infrastructure\MysqlUserRepository;
 use Illuminate\Support\Facades\DB;
 use function Pest\Laravel\assertDatabaseHas;
