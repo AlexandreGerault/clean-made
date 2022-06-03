@@ -29,7 +29,7 @@ class Register
         $hashedPassword = $this->hasher->hash(new Password($request->password));
 
         $user = new User(new Email($request->email), $hashedPassword);
-        $this->userRepository->save($user->snapshot());
+        $this->userRepository->save($user);
         $presenter->userRegistered(new RegisterResponse($user));
     }
 }
