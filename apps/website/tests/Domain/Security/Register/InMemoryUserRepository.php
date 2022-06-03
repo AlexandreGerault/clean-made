@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Domain\Security\Register;
 
 use App\Security\Domain\Entities\User;
-use App\Security\Domain\Entities\UserSnapshot;
 use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\ValueObjects\Email;
 
@@ -37,8 +36,8 @@ class InMemoryUserRepository implements UserRepository
 
     public function contains(User $target): bool
     {
-        return current(array_filter($this->users, function (User $user) use ($target) {
+        return false !== current(array_filter($this->users, function (User $user) use ($target) {
             return $user->snapshot()->email->equals($target->snapshot()->email);
-        })) !== false;
+        }));
     }
 }
