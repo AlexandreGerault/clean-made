@@ -6,29 +6,27 @@ namespace App\Security\UserInterface\Login;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Login\LoginPresenter;
-use App\Shared\UserInterface\Http\HttpResponseViewModel;
+use Symfony\Component\HttpFoundation\Response;
 
 class HtmlLoginPresenter implements LoginPresenter
 {
-    private HttpResponseViewModel $viewModel;
+    private Response $response;
 
     public function successfullyAuthenticatedUser(User $user): void
     {
         session()->flash('login', 'Connexion réussie');
-        $this->viewModel = new HttpResponseViewModel(redirect()->back());
+        $this->response = redirect()->back();
     }
 
     public function invalidCredentialsProvided(): void
     {
-        $this->viewModel = new HttpResponseViewModel(
-            redirect()
+        $this->response = redirect()
                 ->back()
-                ->withErrors(['credentials' => 'Les identifiants renseignés ne correspondent à aucun utilisateur.'])
-        );
+                ->withErrors(['credentials' => 'Les identifiants renseignés ne correspondent à aucun utilisateur.']);
     }
 
-    public function viewModel(): HttpResponseViewModel
+    public function response(): Response
     {
-        return $this->viewModel;
+        return $this->response;
     }
 }

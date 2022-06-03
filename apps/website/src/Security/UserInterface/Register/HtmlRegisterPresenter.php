@@ -7,28 +7,24 @@ namespace App\Security\UserInterface\Register;
 use App\Security\Domain\UseCases\Register\RegisterPresenter;
 use App\Security\Domain\UseCases\Register\RegisterResponse;
 use App\Shared\UserInterface\Http\HttpResponseViewModel;
-use App\Shared\UserInterface\ViewModel;
+use Symfony\Component\HttpFoundation\Response;
 
 class HtmlRegisterPresenter implements RegisterPresenter
 {
-    private HttpResponseViewModel $viewModel;
+    private Response $response;
 
     public function userRegistered(RegisterResponse $response): void
     {
-        $this->viewModel = new HttpResponseViewModel(
-            redirect()->back()
-        );
+        $this->response = redirect()->back();
     }
 
     public function emailAlreadyInUse(): void
     {
-        $this->viewModel = new HttpResponseViewModel(
-            redirect()->back()->withErrors(['emails' => "Cette adresse mail n'est pas disponible"])
-        );
+        $this->response = redirect()->back()->withErrors(['emails' => "Cette adresse mail n'est pas disponible"]);
     }
 
-    public function viewModel(): ViewModel
+    public function response(): Response
     {
-        return $this->viewModel;
+        return $this->response;
     }
 }

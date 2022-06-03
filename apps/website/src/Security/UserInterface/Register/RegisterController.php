@@ -21,6 +21,6 @@ class RegisterController extends Controller
         $request = new RegisterRequest('', $request->get('email'), $request->get('password'));
         $this->register->executes($presenter, $request);
 
-        return $presenter->viewModel()->response();
+        return $presenter->response();
     }
 }

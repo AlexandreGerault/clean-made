@@ -8,7 +8,6 @@ use App\Security\Domain\UseCases\Login\Login;
 use App\Security\Domain\UseCases\Login\LoginRequest;
 use App\Security\UserInterface\Login\LoginRequest as HttpLoginRequest;
 use App\Shared\UserInterface\Http\Controllers\Controller;
-use App\Shared\UserInterface\Http\HttpResponseViewModel;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
@@ -22,10 +21,10 @@ class LoginController extends Controller
         $presenter = new HtmlLoginPresenter();
         $this->login->executes($presenter, new LoginRequest($request->get('email'), $request->get('password')));
 
-        if (!$presenter->viewModel() instanceof HttpResponseViewModel) {
+        if (!$presenter->response() instanceof Response) {
             throw new \RuntimeException('This code should not be executed');
         }
 
-        return $presenter->viewModel()->response();
+        return $presenter->response();
     }
 }
