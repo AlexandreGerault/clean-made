@@ -15,6 +15,6 @@ class AskNewPassword
 
     public function executes(AskNewPasswordRequest $request): void
     {
-        $this->mailGateway->send(new Email($request->to), "New password", "New password");
+        $this->mailGateway->send(new Email($request->to), 'New password', 'New password');
     }
 }

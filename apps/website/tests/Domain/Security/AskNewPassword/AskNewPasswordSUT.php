@@ -21,7 +21,7 @@ class AskNewPasswordSUT
         $this->mailGateway = new InMemoryMailGateway();
 
         $askNewPassword = new AskNewPassword($this->mailGateway);
-        $askNewPassword->executes(new AskNewPasswordRequest("user@email.fr"));
+        $askNewPassword->executes(new AskNewPasswordRequest('user@email.fr'));
 
         return $this;
     }

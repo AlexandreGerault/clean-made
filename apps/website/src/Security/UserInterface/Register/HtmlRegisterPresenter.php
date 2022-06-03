@@ -6,7 +6,6 @@ namespace App\Security\UserInterface\Register;
 
 use App\Security\Domain\UseCases\Register\RegisterPresenter;
 use App\Security\Domain\UseCases\Register\RegisterResponse;
-use App\Shared\UserInterface\Http\HttpResponseViewModel;
 use Symfony\Component\HttpFoundation\Response;
 
 class HtmlRegisterPresenter implements RegisterPresenter
