@@ -17,7 +17,7 @@ class RegisterController extends Controller
 
     public function __invoke(HttpRegisterRequest $request)
     {
-        $presenter = new HtmlRegisterPresenter();
+        $presenter = new RegisterHtmlPresenter();
         $request = new RegisterRequest('', $request->get('email'), $request->get('password'));
         $this->register->executes($presenter, $request);
 

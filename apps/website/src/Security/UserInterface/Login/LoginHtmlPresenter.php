@@ -8,7 +8,7 @@ use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Login\LoginPresenter;
 use Symfony\Component\HttpFoundation\Response;
 
-class HtmlLoginPresenter implements LoginPresenter
+class LoginHtmlPresenter implements LoginPresenter
 {
     private Response $response;
 

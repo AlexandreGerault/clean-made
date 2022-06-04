@@ -8,7 +8,7 @@ use App\Security\Domain\UseCases\Register\RegisterPresenter;
 use App\Security\Domain\UseCases\Register\RegisterResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class HtmlRegisterPresenter implements RegisterPresenter
+class RegisterHtmlPresenter implements RegisterPresenter
 {
     private Response $response;
 

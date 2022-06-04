@@ -18,7 +18,7 @@ class LoginController extends Controller
 
     public function __invoke(HttpLoginRequest $request): Response
     {
-        $presenter = new HtmlLoginPresenter();
+        $presenter = new LoginHtmlPresenter();
         $this->login->executes($presenter, new LoginRequest($request->get('email'), $request->get('password')));
 
         if (!$presenter->response() instanceof Response) {
