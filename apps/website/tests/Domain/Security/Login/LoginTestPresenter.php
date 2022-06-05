@@ -11,16 +11,16 @@ use Exception;
 
 class LoginTestPresenter implements LoginPresenter
 {
-    private LoginResponse $response;
+    private string $response;
 
-    public function response(): LoginResponse
+    public function response(): string
     {
         return $this->response;
     }
 
     public function successfullyAuthenticatedUser(User $user): void
     {
-        $this->response = new LoginResponse($user);
+        $this->response = 'Successfully authenticated user';
     }
 
     /**
@@ -28,6 +28,6 @@ class LoginTestPresenter implements LoginPresenter
      */
     public function invalidCredentialsProvided(): void
     {
-        throw new Exception('Invalid credentials provided');
+        $this->response = 'Invalid credentials provided';
     }
 }

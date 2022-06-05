@@ -9,11 +9,11 @@ use App\Security\Domain\Entities\User;
 it('can authenticate a user', function () {
     $sut = LoginSUT::new()->build()->run();
 
-    $user = $sut->presenter->response()->user();
-
-    expect($user)->toBeInstanceOf(User::class);
+    expect($sut->presenter->response())->toBe('Successfully authenticated user');
 });
 
 it('fails to authenticate when invalid credentials provided', function () {
-    LoginSUT::new()->withInvalidCredentials()->build()->run();
-})->throws(\Exception::class, 'Invalid credentials provided');
+    $sut = LoginSUT::new()->withInvalidCredentials()->build()->run();
+
+    expect($sut->presenter->response())->toBe('Invalid credentials provided');
+});
