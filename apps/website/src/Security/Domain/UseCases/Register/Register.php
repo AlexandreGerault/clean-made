@@ -30,6 +30,6 @@ class Register
 
         $user = new User(new Email($request->email), $hashedPassword);
         $this->userRepository->save($user);
-        $presenter->userRegistered(new RegisterResponse($user));
+        $presenter->userRegistered($user);
     }
 }

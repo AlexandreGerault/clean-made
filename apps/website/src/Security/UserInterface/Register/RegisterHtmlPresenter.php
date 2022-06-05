@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Security\UserInterface\Register;
 
+use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Register\RegisterPresenter;
-use App\Security\Domain\UseCases\Register\RegisterResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterHtmlPresenter implements RegisterPresenter
 {
     private Response $response;
 
-    public function userRegistered(RegisterResponse $response): void
+    public function userRegistered(User $user): void
     {
         $this->response = redirect()->back();
     }

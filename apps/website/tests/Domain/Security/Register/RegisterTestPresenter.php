@@ -4,31 +4,27 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Register;
 
+use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Register\RegisterPresenter;
 use App\Security\Domain\UseCases\Register\RegisterResponse;
 use App\Shared\UserInterface\ViewModel;
 
 class RegisterTestPresenter implements RegisterPresenter
 {
-    private RegisterResponse $response;
+    private string $response;
 
-    public function response(): RegisterResponse
+    public function response(): string
     {
         return $this->response;
     }
 
-    public function userRegistered(RegisterResponse $response): void
+    public function userRegistered(User $user): void
     {
-        $this->response = $response;
+        $this->response = $user->snapshot()->email->value . " registered";
     }
 
     public function emailAlreadyInUse(): void
     {
-        throw new \Exception('This email address is already in use');
-    }
-
-    public function viewModel(): ViewModel
-    {
-        return new class() implements ViewModel {};
+        $this->response = "email already registered";
     }
 }
