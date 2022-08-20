@@ -8,11 +8,12 @@ use App\Security\Domain\Entities\User;
 use App\Security\Domain\Services\CredentialsAuthenticator;
 use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\HashedPassword;
+use Ramsey\Uuid\Uuid;
 
 class ValidCredentialsAuthenticator implements CredentialsAuthenticator
 {
-    public function authenticate(string $username, string $password): User|false
+    public function authenticate(string $email, string $password): User|false
     {
-        return new User(new Email('john-doe@email'), new HashedPassword('password'));
+        return new User(Uuid::uuid4(), new Email('john-doe@email'), new HashedPassword('password'));
     }
 }

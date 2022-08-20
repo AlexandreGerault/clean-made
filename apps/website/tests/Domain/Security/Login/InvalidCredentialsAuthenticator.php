@@ -9,7 +9,7 @@ use App\Security\Domain\Services\CredentialsAuthenticator;
 
 class InvalidCredentialsAuthenticator implements CredentialsAuthenticator
 {
-    public function authenticate(string $username, string $password): User|false
+    public function authenticate(string $email, string $password): User|false
     {
         return false;
     }

@@ -11,6 +11,7 @@ use App\Security\Domain\ValueObjects\HashedPassword;
 use App\Shared\Infrastructure\Models\User as EloquentUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class MysqlUserRepository implements UserRepository
 {
@@ -21,12 +22,18 @@ class MysqlUserRepository implements UserRepository
 
     public function save(User $user): void
     {
-        $user = $user->snapshot();
-        EloquentUser::query()->create(['email' => $user->email->value, 'password' => Hash::make($user->password->value)]);
+        $snapshot = $user->snapshot();
+
+        EloquentUser::firstOrCreate(
+            ['id' => $snapshot->uuid->toString()],
+            ['email' => $snapshot->email->value, 'password' => Hash::make($snapshot->password->value)]
+        );
     }
 
     public function findByEmail(Email $email): User
     {
-        return new User(new Email("email"), new HashedPassword("password"));
+        $user = EloquentUser::query()->where('email', '=', $email->value)->first();
+
+        return new User(Uuid::fromString($user->id), new Email($user->email), new HashedPassword($user->password));
     }
 }

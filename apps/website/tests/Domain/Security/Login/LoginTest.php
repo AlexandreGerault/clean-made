@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Login;
 
-use App\Security\Domain\Entities\User;
-
 it('can authenticate a user', function () {
     $sut = LoginSUT::new()->build()->run();
 

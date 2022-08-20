@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Domain\Security\Register;
 
-use App\Security\Domain\Entities\User;
-use Exception;
-
 it('registers a user successfully', function () {
     $sut = RegisterSUT::new()->build()->run();
 

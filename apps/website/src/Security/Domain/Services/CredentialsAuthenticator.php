@@ -8,5 +8,5 @@ use App\Security\Domain\Entities\User;
 
 interface CredentialsAuthenticator
 {
-    public function authenticate(string $username, string $password): User|false;
+    public function authenticate(string $email, string $password): User|false;
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Domain\Security\AskNewPassword;
+namespace Tests\Domain\Security\Adapters;
 
 use App\Security\Domain\Gateways\MailGateway;
 use App\Security\Domain\ValueObjects\Email;

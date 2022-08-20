@@ -6,6 +6,7 @@ namespace Tests\Domain\Security\Register;
 
 use App\Security\Domain\UseCases\Register\Register;
 use App\Security\Domain\UseCases\Register\RegisterRequest;
+use Tests\Domain\Security\Adapters\InMemoryUserRepository;
 
 class RegisterSUT
 {

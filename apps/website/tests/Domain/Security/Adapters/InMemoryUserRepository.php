@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Domain\Security\Register;
+namespace Tests\Domain\Security\Adapters;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\Gateways\UserRepository;
@@ -22,12 +22,13 @@ class InMemoryUserRepository implements UserRepository
 
     public function exists(Email $email): bool
     {
-        return $this->userExists;
-    }
+        foreach ($this->users as $user) {
+            if ($user->snapshot()->email->value === $email->value) {
+                return true;
+            }
+        }
 
-    public function forceUserDoesNotExist(): void
-    {
-        $this->userExists = false;
+        return $this->userExists;
     }
 
     public function forceUserExists(): void
@@ -37,6 +38,13 @@ class InMemoryUserRepository implements UserRepository
 
     public function save(User $user): void
     {
+        foreach ($this->users as $itrUser) {
+            if ($itrUser->snapshot()->email->value === $user->snapshot()->email->value) {
+                $this->users[0] = $user;
+                return;
+            }
+        }
+
         $this->users[] = $user;
     }
 
@@ -49,11 +57,13 @@ class InMemoryUserRepository implements UserRepository
 
     public function findByEmail(Email $email): User
     {
-        if (!$this->userExists) {
-            throw new \RuntimeException('User does not exist');
+        foreach ($this->users as $itrUser) {
+            if ($itrUser->snapshot()->email->value === $email->value) {
+                return $itrUser;
+            }
         }
 
-        return new User($email, new HashedPassword("password"));
+        throw new \RuntimeException('User does not exist');
     }
 
     public function assertEmailExist(string $email): bool

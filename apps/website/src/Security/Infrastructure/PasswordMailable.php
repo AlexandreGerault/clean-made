@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Tests\Domain\Security\AskNewPassword;
+namespace App\Security\Infrastructure;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\Services\PasswordMail;
 
-class DummyPasswordMail implements PasswordMail
+class PasswordMailable implements PasswordMail
 {
     public function makeContent(User $user): string
     {
-        return "New password for {$user->snapshot()->email->value}";
+        return view('security.mails.new-password')->render();
     }
 
     public function makeSubject(): string
     {
-        return "New password";
+        return __('New password');
     }
 }

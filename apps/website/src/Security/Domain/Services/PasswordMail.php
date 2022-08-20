@@ -8,5 +8,7 @@ use App\Security\Domain\Entities\User;
 
 interface PasswordMail
 {
-    public function generateContent(User $user): string;
+    public function makeSubject(): string;
+
+    public function makeContent(User $user): string;
 }

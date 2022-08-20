@@ -6,7 +6,6 @@ namespace Tests\Domain\Security\Login;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Login\LoginPresenter;
-use App\Security\Domain\UseCases\Login\LoginResponse;
 use Exception;
 
 class LoginTestPresenter implements LoginPresenter

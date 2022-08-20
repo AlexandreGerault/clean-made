@@ -6,7 +6,12 @@ use App\Security\Domain\Entities\User;
 use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\HashedPassword;
 use App\Security\Infrastructure\MysqlUserRepository;
+use Database\Factories\UserFactory;
 use Illuminate\Support\Facades\DB;
+
+use Ramsey\Uuid\Uuid;
+
+use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
 it('returns false when email is not present', function () {
@@ -16,7 +21,7 @@ it('returns false when email is not present', function () {
 })->group('check it can check if a user exists');
 
 it('returns true when an email is present', function () {
-    DB::table('users')->insert(['email' => 'present@email', 'password' => 'password']);
+    UserFactory::new()->create(['email' => 'present@email', 'password' => 'password']);
 
     $repository = new MysqlUserRepository();
 
@@ -25,9 +30,24 @@ it('returns true when an email is present', function () {
 
 it('saves a user to the database', function () {
     $repository = new MysqlUserRepository();
-    $user = new User(new Email('user@email'), new HashedPassword('password'));
+    $user = new User(Uuid::uuid4(), new Email('user@email'), new HashedPassword('password'));
 
     $repository->save($user);
 
     assertDatabaseHas('users', ['email' => 'user@email']);
+});
+
+it('updates a user in the database', function () {
+    $eloquentUser = UserFactory::new()->create(['email' => 'user@email', 'password' => 'password']);
+    $repository = new MysqlUserRepository();
+
+    $user = new User(
+        Uuid::fromString($eloquentUser->id),
+        new Email('user@email'),
+        new HashedPassword('password')
+    );
+
+    $repository->save($user);
+
+    assertDatabaseCount('users', 1);
 });

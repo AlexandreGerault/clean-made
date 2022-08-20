@@ -28,8 +28,9 @@ class Register
 
         $hashedPassword = $this->hasher->hash(new Password($request->password));
 
-        $user = new User(new Email($request->email), $hashedPassword);
+        $user = User::create($request->email, $hashedPassword->value);
         $this->userRepository->save($user);
+
         $presenter->userRegistered($user);
     }
 }

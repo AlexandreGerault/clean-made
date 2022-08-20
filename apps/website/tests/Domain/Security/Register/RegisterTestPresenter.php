@@ -6,8 +6,6 @@ namespace Tests\Domain\Security\Register;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Register\RegisterPresenter;
-use App\Security\Domain\UseCases\Register\RegisterResponse;
-use App\Shared\UserInterface\ViewModel;
 
 class RegisterTestPresenter implements RegisterPresenter
 {
@@ -20,11 +18,11 @@ class RegisterTestPresenter implements RegisterPresenter
 
     public function userRegistered(User $user): void
     {
-        $this->response = $user->snapshot()->email->value . " registered";
+        $this->response = $user->snapshot()->email->value.' registered';
     }
 
     public function emailAlreadyInUse(): void
     {
-        $this->response = "email already registered";
+        $this->response = 'email already registered';
     }
 }
