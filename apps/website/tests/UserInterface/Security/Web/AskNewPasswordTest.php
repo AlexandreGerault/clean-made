@@ -6,6 +6,7 @@ use App\Shared\Infrastructure\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
+
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\get;
 use function Pest\Laravel\postJson;

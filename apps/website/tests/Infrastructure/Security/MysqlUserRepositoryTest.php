@@ -7,8 +7,10 @@ use App\Security\Domain\ValueObjects\Email;
 use App\Security\Domain\ValueObjects\HashedPassword;
 use App\Security\Infrastructure\MysqlUserRepository;
 use Database\Factories\UserFactory;
+
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
+
 use Ramsey\Uuid\Uuid;
 
 it('returns false when email is not present', function () {

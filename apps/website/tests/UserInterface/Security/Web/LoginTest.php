@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Database\Factories\UserFactory;
+
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
