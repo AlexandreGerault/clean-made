@@ -32,7 +32,7 @@ class MysqlUserRepository implements UserRepository
 
     public function findByEmail(Email $email): User
     {
-        $user = EloquentUser::query()->where('email', '=', $email->value)->first();
+        $user = EloquentUser::query()->where('email', '=', $email->value)->firstOrFail();
 
         return new User(Uuid::fromString($user->id), new Email($user->email), new HashedPassword($user->password));
     }

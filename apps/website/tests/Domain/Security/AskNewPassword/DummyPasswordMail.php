@@ -16,6 +16,6 @@ class DummyPasswordMail implements PasswordMail
 
     public function makeSubject(): string
     {
-        return "New password";
+        return 'New password';
     }
 }

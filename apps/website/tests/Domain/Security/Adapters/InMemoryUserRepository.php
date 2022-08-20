@@ -7,7 +7,6 @@ namespace Tests\Domain\Security\Adapters;
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\Gateways\UserRepository;
 use App\Security\Domain\ValueObjects\Email;
-use App\Security\Domain\ValueObjects\HashedPassword;
 
 class InMemoryUserRepository implements UserRepository
 {
@@ -41,6 +40,7 @@ class InMemoryUserRepository implements UserRepository
         foreach ($this->users as $itrUser) {
             if ($itrUser->snapshot()->email->value === $user->snapshot()->email->value) {
                 $this->users[0] = $user;
+
                 return;
             }
         }

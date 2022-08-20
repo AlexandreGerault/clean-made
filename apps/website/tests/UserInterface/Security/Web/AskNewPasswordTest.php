@@ -6,7 +6,6 @@ use App\Shared\Infrastructure\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
-
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\get;
 use function Pest\Laravel\postJson;
@@ -27,7 +26,7 @@ it('sends a new password mail', function () {
         ->assertSuccessful();
 
     Mail::assertSent(function (Mailable $mailable) {
-        return in_array(['name' => null, 'address' => 'user@example.com'], $mailable->to) && $mailable->subject === 'New password';
+        return in_array(['name' => null, 'address' => 'user@example.com'], $mailable->to, true) && 'New password' === $mailable->subject;
     });
 
     assertDatabaseMissing('users', ['email' => 'user@example.com', 'reset_password_token' => null]);

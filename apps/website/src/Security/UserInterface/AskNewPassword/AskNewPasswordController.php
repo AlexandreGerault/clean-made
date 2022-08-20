@@ -8,6 +8,7 @@ use App\Security\Domain\UseCases\AskNewPassword\AskNewPassword;
 use App\Security\Domain\UseCases\AskNewPassword\AskNewPasswordRequest;
 use App\Shared\UserInterface\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AskNewPasswordController extends Controller
 {
@@ -15,11 +16,16 @@ class AskNewPasswordController extends Controller
     {
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
-        $input = new AskNewPasswordRequest(to: $request->get('email'));
+        /** @var string $email */
+        $email = $request->get('email');
+
+        $input = new AskNewPasswordRequest(to: $email);
         $presenter = new AskNewPasswordHtmlPresenter();
 
         $this->askNewPassword->executes($input, $presenter);
+
+        return $presenter->response();
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Providers;
 
+use Exception;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -42,13 +43,13 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Configure the rate limiters for the application.
-     *
-     * @return void
      */
-    protected function configureRateLimiting()
+    protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            $key = $request->user()->id ?? $request->ip() ?? throw new Exception('The attempt key is missing.');
+
+            return Limit::perMinute(60)->by($key);
         });
     }
 }

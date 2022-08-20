@@ -23,7 +23,10 @@ class SecurityServiceProvider extends ServiceProvider
             ->when(LoginController::class)
             ->needs(Login::class)
             ->give(function (Application $application) {
-                return new Login($application->make(WebCredentialsAuthenticator::class));
+                /** @var WebCredentialsAuthenticator $authenticator */
+                $authenticator = $application->make(WebCredentialsAuthenticator::class);
+
+                return new Login($authenticator);
             });
 
         $this->app->bind(PasswordHasher::class, LaravelPasswordHasher::class);

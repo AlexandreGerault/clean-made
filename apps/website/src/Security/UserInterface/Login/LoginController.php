@@ -18,8 +18,13 @@ class LoginController extends Controller
 
     public function __invoke(HttpLoginRequest $request): Response
     {
+        /** @var string $email */
+        $email = $request->get('email');
+        /** @var string $password */
+        $password = $request->get('password');
+
         $presenter = new LoginHtmlPresenter();
-        $this->login->executes($presenter, new LoginRequest($request->get('email'), $request->get('password')));
+        $this->login->executes($presenter, new LoginRequest($email, $password));
 
         if (!$presenter->response() instanceof Response) {
             throw new \RuntimeException('This code should not be executed');

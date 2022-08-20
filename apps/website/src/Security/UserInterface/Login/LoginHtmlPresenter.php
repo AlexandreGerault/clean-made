@@ -6,6 +6,7 @@ namespace App\Security\UserInterface\Login;
 
 use App\Security\Domain\Entities\User;
 use App\Security\Domain\UseCases\Login\LoginPresenter;
+use Illuminate\Session\Store;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginHtmlPresenter implements LoginPresenter
@@ -14,7 +15,11 @@ class LoginHtmlPresenter implements LoginPresenter
 
     public function successfullyAuthenticatedUser(User $user): void
     {
-        session()->flash('login', 'Connexion réussie');
+        /** @var Store $session */
+        $session = session();
+
+        $session->flash('login', 'Connexion réussie');
+
         $this->response = redirect()->back();
     }
 

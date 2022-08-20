@@ -16,6 +16,9 @@ class PasswordMailable implements PasswordMail
 
     public function makeSubject(): string
     {
-        return __('New password');
+        /** @var string $subject */
+        $subject = __('New password');
+
+        return $subject;
     }
 }
